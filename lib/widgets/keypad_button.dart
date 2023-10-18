@@ -5,11 +5,13 @@ class KeyPadButton extends StatefulWidget {
   final Function(int) onPressed;
 
   final int keyNumber;
+  final bool isSelected;
 
   const KeyPadButton({
     super.key,
     required this.keyNumber,
     required this.onPressed,
+    required this.isSelected,
   });
 
   @override
@@ -53,6 +55,13 @@ class KeyPadButtonState extends State<KeyPadButton> with SingleTickerProviderSta
 
   Color buttonColor = const Color(0xFF21295c);
 
+  @override
+  void initState() {
+    if (widget.isSelected) {
+      buttonColor = const Color(0xFF305da8);
+    }
+    super.initState();
+  }
 
 
   @override
@@ -86,7 +95,7 @@ class KeyPadButtonState extends State<KeyPadButton> with SingleTickerProviderSta
 
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-                    buttonColor = const Color(0xff21455c);
+                    buttonColor = Theme.of(context).colorScheme.primary;
 
                     pressAndRelease();
                   },

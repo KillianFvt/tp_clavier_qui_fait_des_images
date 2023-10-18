@@ -3,10 +3,12 @@ import 'keypad_button.dart';
 
 class KeyPad extends StatefulWidget {
   final  Function(int)onPressed;
+  final int selectedKey;
 
   const KeyPad({
     super.key,
     required this.onPressed,
+    required this.selectedKey,
   });
 
   @override
@@ -27,6 +29,8 @@ class _KeyPadState extends State<KeyPad> {
     for (int i = 0; i < 10; i++) {
       if (i != keyNumber) {
         _keyPadButtonKeys[i].currentState!.buttonColor = const Color(0xFF21295c);
+      } else if (i == keyNumber - 1) {
+        _keyPadButtonKeys[i].currentState!.buttonColor = Theme.of(context).colorScheme.primary;
       }
     }
   }
@@ -46,6 +50,7 @@ class _KeyPadState extends State<KeyPad> {
               child: KeyPadButton(
                 keyNumber: i != 9 ? i + 1 : 0,
                 onPressed: _keyPress,
+                isSelected: widget.selectedKey == i + 1,
                 key: _keyPadButtonKeys[i],
               ),
             )

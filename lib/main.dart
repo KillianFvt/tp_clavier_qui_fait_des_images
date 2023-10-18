@@ -83,7 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
             const Spacer(),
 
-            isKeyboardOpen ? KeyPad(onPressed: updateCurrentImage) :
+            isKeyboardOpen ? KeyPad(
+                onPressed: updateCurrentImage,
+                selectedKey: currentImage != null ? currentImage! : 0,
+            ) :
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.6,
               child: Center(
