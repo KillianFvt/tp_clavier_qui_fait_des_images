@@ -13,10 +13,10 @@ class KeyPadButton extends StatefulWidget {
   });
 
   @override
-  State<KeyPadButton> createState() => _KeyPadButtonState();
+  State<KeyPadButton> createState() => KeyPadButtonState();
 }
 
-class _KeyPadButtonState extends State<KeyPadButton> with SingleTickerProviderStateMixin {
+class KeyPadButtonState extends State<KeyPadButton> with SingleTickerProviderStateMixin {
 
   static double _bottomShift = 0;
 
@@ -51,6 +51,8 @@ class _KeyPadButtonState extends State<KeyPadButton> with SingleTickerProviderSt
     );
   }
 
+  Color buttonColor = const Color(0xFF21295c);
+
 
 
   @override
@@ -63,44 +65,51 @@ class _KeyPadButtonState extends State<KeyPadButton> with SingleTickerProviderSt
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.3,
             height: MediaQuery.of(context).size.width * 0.3,
-            child: ElevatedButton(
-                onPressed: () {
-                  widget.onPressed(widget.keyNumber);
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ElevatedButton(
+                  onPressed: () {
+                    widget.onPressed(widget.keyNumber);
 
-                  final snackBar = SnackBar(
-                    duration: const Duration(milliseconds: 750),
-                    content: Text('Image n°${widget.keyNumber} affichée !'),
-                    action: SnackBarAction(
-                      label: 'Fermer',
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      },
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+                    final snackBar = SnackBar(
+                      duration: const Duration(milliseconds: 750),
+                      content: Text('Image n°${widget.keyNumber} affichée !'),
+                      action: SnackBarAction(
+                        label: 'Fermer',
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
+                      ),
+                    );
+
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                    buttonColor = const Color(0xff21455c);
+
+                    pressAndRelease();
+                  },
+
+                  style: ElevatedButton.styleFrom(
+
+                    elevation: 10.0,
+
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  );
+                    padding: const EdgeInsets.all(10),
+                    backgroundColor: buttonColor,
+                    foregroundColor: Colors.white,
 
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-                  pressAndRelease();
-                },
-
-                style: ElevatedButton.styleFrom(
-
-                  elevation: 10.0,
-
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    textStyle: const TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  padding: const EdgeInsets.all(10),
-                  backgroundColor: const Color(0xFF21295c),
-                  foregroundColor: Colors.white,
 
-                  textStyle: const TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                child: Text('${widget.keyNumber}')
+                  child: Text('${widget.keyNumber}')
+              ),
             ),
           ),
         ),
