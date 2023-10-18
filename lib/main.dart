@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         tooltip: 'Increment',
         backgroundColor: Theme.of(context).colorScheme.primary,
-        child: const Icon(Icons.add, color: Colors.white,),
+        child: const Icon(Icons.panorama_outlined, color: Colors.white,),
       ),
     );
   }
