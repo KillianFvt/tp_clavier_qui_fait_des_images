@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'keypad_button.dart';
 
 class KeyPad extends StatefulWidget {
-  final Function(int) onPressed;
+  final  Function(int)onPressed;
 
   const KeyPad({
     super.key,

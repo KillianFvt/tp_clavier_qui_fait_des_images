@@ -50,8 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   List<Image> imgList = <Image>[
-    for (int i = 0; i < 9; i++)
-      Image.network('https://picsum.photos/id/$i/500/500', width: 500, height: 500,)
+    for (int i = 0; i < 10; i++)
+      Image.network('https://picsum.photos/id/${i*10}/500/500', width: 500, height: 500,)
   ];
 
   @override
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.6,
               child: Center(
-                child: imgList[currentImage ?? 0]
+                child: imgList[currentImage != null ? currentImage! : 0]
               ),
             )
 
