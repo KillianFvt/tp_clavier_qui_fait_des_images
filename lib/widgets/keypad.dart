@@ -27,7 +27,7 @@ class _KeyPadState extends State<KeyPad> {
     widget.onPressed(keyNumber);
 
     for (int i = 0; i < 10; i++) {
-      if (i != keyNumber) {
+      if (i != keyNumber - 1) {
         _keyPadButtonKeys[i].currentState!.buttonColor = const Color(0xFF21295c);
       } else if (i == keyNumber - 1) {
         _keyPadButtonKeys[i].currentState!.buttonColor = Theme.of(context).colorScheme.primary;
