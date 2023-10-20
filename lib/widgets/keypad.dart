@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'keypad_button.dart';
+import 'keypad_button.dart' show KeyPadButton, KeyPadButtonState;
+import '../palette.dart' show Palette;
 
 class KeyPad extends StatefulWidget {
   final  Function(int)onPressed;
@@ -17,7 +18,6 @@ class KeyPad extends StatefulWidget {
 
 class _KeyPadState extends State<KeyPad> {
 
-  // list of 10 globakeys for the 10 keys
   final List<GlobalKey<KeyPadButtonState>> _keyPadButtonKeys = <GlobalKey<KeyPadButtonState>>[
     for (int i = 0; i < 10; i++)
       GlobalKey<KeyPadButtonState>(),
@@ -28,9 +28,9 @@ class _KeyPadState extends State<KeyPad> {
 
     for (int i = 0; i < 10; i++) {
       if (i != keyNumber - 1) {
-        _keyPadButtonKeys[i].currentState!.buttonColor = const Color(0xFF21295c);
+        _keyPadButtonKeys[i].currentState!.buttonColor = Palette.btnNormal;
       } else if (i == keyNumber - 1) {
-        _keyPadButtonKeys[i].currentState!.buttonColor = Theme.of(context).colorScheme.primary;
+        _keyPadButtonKeys[i].currentState!.buttonColor = Palette.btnEnabled;
       }
     }
   }

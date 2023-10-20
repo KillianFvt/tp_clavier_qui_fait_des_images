@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../palette.dart' show Palette;
 
 class KeyPadButton extends StatefulWidget {
 
@@ -53,12 +54,12 @@ class KeyPadButtonState extends State<KeyPadButton> with SingleTickerProviderSta
     );
   }
 
-  Color buttonColor = const Color(0xFF21295c);
+  Color buttonColor = Palette.btnNormal;
 
   @override
   void initState() {
     if (widget.isSelected) {
-      buttonColor = const Color(0xFF305da8);
+      buttonColor = Palette.btnEnabled;
     }
     super.initState();
   }
@@ -95,7 +96,7 @@ class KeyPadButtonState extends State<KeyPadButton> with SingleTickerProviderSta
 
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-                    buttonColor = Theme.of(context).colorScheme.primary;
+                    buttonColor = Palette.btnEnabled;
 
                     pressAndRelease();
                   },
